@@ -162,6 +162,17 @@ export const projects: Project[] = [
         github: "https://github.com/Maybeayan07/vertical-farming-iot",
         featured: false,
     },
+    {
+        id: "9",
+        title: "AI Chatbot",
+        description: "Real-time chatbot powered by OpenAI API",
+        longDescription:
+            "Designed and built an interactive AI chatbot application using React. Developed a modern, intuitive chat UI and integrated the OpenAI API to generate real-time responses to user queries.",
+        image: "https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?w=500&h=300&fit=crop",
+        technologies: ["React", "OpenAI API", "Tailwind CSS", "TypeScript"],
+        github: "https://github.com/Maybeayan07",
+        featured: true,
+    },
 ];
 
 export const experiences: Experience[] = [
@@ -169,7 +180,7 @@ export const experiences: Experience[] = [
         id: "1",
         company: "Carrefour (Giga Mall, Islamabad)",
         role: "IT Intern",
-        duration: "2024",
+        duration: "",
         description:
             "Assisted with enterprise IT operations and infrastructure maintenance. Resolved hardware and software issues for staff and worked with real-world corporate IT systems.",
         achievements: [
@@ -183,11 +194,11 @@ export const experiences: Experience[] = [
         id: "2",
         company: "Fincon Services",
         role: "Remote IT Intern",
-        duration: "2023-2024",
+        duration: "June 18, 2025 - August 13, 2025",
         description:
             "Worked remotely on IT-related tasks with virtual collaboration. Delivered assignments independently and gained exposure to professional software workflows.",
         achievements: [
-            "Completed remote IT projects independently",
+            "Complete remote IT projects independently",
             "Collaborated with distributed team members virtually",
             "Learned professional development practices",
             "Delivered high-quality work in remote environment",

@@ -9,6 +9,99 @@ interface HeroProps {
   onHireClick?: () => void;
 }
 
+const ProfileImage = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+      className="relative flex items-center justify-center scale-90 sm:scale-100"
+    >
+      {/* Outer Glow */}
+      <div className="absolute h-[320px] w-[320px] sm:h-[430px] sm:w-[430px] rounded-full bg-blue-500/20 blur-[100px] sm:blur-[120px]" />
+
+      {/* Animated Border */}
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{
+          repeat: Infinity,
+          duration: 18,
+          ease: "linear",
+        }}
+        className="absolute h-[290px] w-[290px] sm:h-[390px] sm:w-[390px] rounded-full border border-blue-400/20 border-dashed"
+      />
+
+      {/* Second Ring */}
+      <motion.div
+        animate={{ rotate: -360 }}
+        transition={{
+          repeat: Infinity,
+          duration: 28,
+          ease: "linear",
+        }}
+        className="absolute h-[320px] w-[320px] sm:h-[430px] sm:w-[430px] rounded-full border border-violet-500/10"
+      />
+
+      {/* Floating Profile */}
+      <motion.div
+        animate={{
+          y: [0, -15, 0],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 5,
+          ease: "easeInOut",
+        }}
+        className="relative"
+      >
+        <div className="overflow-hidden rounded-full border border-white/10 bg-[#111111] p-2 sm:p-3 shadow-2xl">
+          <img
+            src={profileImage}
+            alt="Ayan Aleem"
+            className="h-[200px] w-[200px] sm:h-[280px] sm:w-[280px] md:h-[340px] md:w-[340px] lg:h-[420px] lg:w-[420px] rounded-full object-cover"
+          />
+        </div>
+      </motion.div>
+
+      {/* Floating AI Badge */}
+      <motion.div
+        animate={{
+          y: [0, -10, 0],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 4,
+        }}
+        className="absolute -top-2 -right-4 sm:top-6 sm:right-0 rounded-2xl border border-blue-500/20 bg-[#111111]/90 px-3 sm:px-5 py-2 sm:py-4 backdrop-blur-xl shadow-xl scale-90 sm:scale-100"
+      >
+        <p className="text-[10px] sm:text-xs uppercase tracking-widest text-blue-400 font-medium">
+          Focus
+        </p>
+        <h4 className="mt-1 sm:mt-2 text-xs sm:text-sm font-semibold">Machine Learning</h4>
+      </motion.div>
+
+      {/* Floating Tech Badge */}
+      <motion.div
+        animate={{
+          y: [0, 10, 0],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 5,
+        }}
+        className="absolute -bottom-2 -left-4 sm:bottom-10 sm:left-0 rounded-2xl border border-white/10 bg-[#111111]/90 px-3 sm:px-5 py-2 sm:py-4 backdrop-blur-xl shadow-xl scale-90 sm:scale-100"
+      >
+        <p className="text-[10px] sm:text-xs uppercase tracking-widest text-neutral-400 font-medium">
+          Tech Stack
+        </p>
+        <h4 className="mt-1 sm:mt-2 text-xs sm:text-sm font-semibold text-blue-400">
+          Python • React • TensorFlow
+        </h4>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 const Hero = ({ onHireClick }: HeroProps) => {
   return (
     <section
@@ -71,8 +164,13 @@ const Hero = ({ onHireClick }: HeroProps) => {
               transition={{ delay: 0.45 }}
               className="mt-4 sm:mt-6 text-xl sm:text-2xl md:text-3xl font-semibold text-neutral-200"
             >
-              Artificial Intelligence Student
+              Artificial Intelligence Student | Machine Learning & Computer Vision Enthusiast
             </motion.h2>
+
+            {/* Mobile Profile Image */}
+            <div className="block lg:hidden my-10 flex justify-center">
+              <ProfileImage />
+            </div>
 
             {/* Description */}
             <motion.p
@@ -183,95 +281,8 @@ const Hero = ({ onHireClick }: HeroProps) => {
           </div>
 
           {/* RIGHT SIDE - Profile Image */}
-          <div className="hidden lg:block">
-            <motion.div
-              initial={{ opacity: 0, x: 80 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="relative flex items-center justify-center"
-            >
-              {/* Outer Glow */}
-              <div className="absolute h-[430px] w-[430px] rounded-full bg-blue-500/20 blur-[120px]" />
-
-              {/* Animated Border */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 18,
-                  ease: "linear",
-                }}
-                className="absolute h-[390px] w-[390px] rounded-full border border-blue-400/20 border-dashed"
-              />
-
-              {/* Second Ring */}
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 28,
-                  ease: "linear",
-                }}
-                className="absolute h-[430px] w-[430px] rounded-full border border-violet-500/10"
-              />
-
-              {/* Floating Profile */}
-              <motion.div
-                animate={{
-                  y: [0, -15, 0],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 5,
-                  ease: "easeInOut",
-                }}
-                className="relative"
-              >
-                <div className="overflow-hidden rounded-full border border-white/10 bg-[#111111] p-3 shadow-2xl">
-                  <img
-                    src={profileImage}
-                    alt="Ayan Aleem"
-                    className="h-[340px] w-[340px] rounded-full object-cover md:h-[420px] md:w-[420px]"
-                  />
-                </div>
-              </motion.div>
-
-              {/* Floating AI Badge */}
-              <motion.div
-                animate={{
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 4,
-                }}
-                className="absolute top-6 right-0 rounded-2xl border border-blue-500/20 bg-[#111111]/90 px-4 sm:px-5 py-3 sm:py-4 backdrop-blur-xl shadow-xl"
-              >
-                <p className="text-xs uppercase tracking-widest text-blue-400">
-                  Focus
-                </p>
-                <h4 className="mt-2 text-sm font-semibold">Machine Learning</h4>
-              </motion.div>
-
-              {/* Floating Tech Badge */}
-              <motion.div
-                animate={{
-                  y: [0, 10, 0],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 5,
-                }}
-                className="absolute bottom-10 left-0 rounded-2xl border border-white/10 bg-[#111111]/90 px-4 sm:px-5 py-3 sm:py-4 backdrop-blur-xl shadow-xl"
-              >
-                <p className="text-xs uppercase tracking-widest text-neutral-400">
-                  Tech Stack
-                </p>
-                <h4 className="mt-2 text-sm font-semibold text-blue-400">
-                  Python • React • TensorFlow
-                </h4>
-              </motion.div>
-            </motion.div>
+          <div className="hidden lg:flex justify-center mt-10 lg:mt-0">
+            <ProfileImage />
           </div>
         </div>
       </div>

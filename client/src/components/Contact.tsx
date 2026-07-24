@@ -1,34 +1,7 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Simulate form submission
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setFormData({ name: "", email: "", message: "" });
-      setSubmitted(false);
-    }, 3000);
-  };
-
   return (
     <section
       id="contact"
@@ -54,140 +27,50 @@ const Contact = () => {
           </h2>
           <div className="mt-4 h-1 w-20 bg-gradient-to-r from-blue-400 to-cyan-300 mx-auto" />
           <p className="mt-6 text-base sm:text-lg text-neutral-400 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach
-            out. I'm always excited to discuss new ideas and opportunities.
+            I'm always excited to discuss new ideas, collaborations, and opportunities.
+            Feel free to connect with me through any of the platforms below!
           </p>
         </motion.div>
 
         {/* Contact Content */}
-        <div className="grid gap-12 lg:grid-cols-2">
-          {/* Contact Form */}
+        <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name Input */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                viewport={{ once: true }}
-              >
-                <label className="block text-sm font-semibold mb-2">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full rounded-lg border border-blue-500/20 bg-blue-500/5 px-4 py-3 text-white placeholder-neutral-500 transition focus:border-blue-500/40 focus:bg-blue-500/10 focus:outline-none"
-                  placeholder="John Doe"
-                />
-              </motion.div>
-
-              {/* Email Input */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <label className="block text-sm font-semibold mb-2">
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full rounded-lg border border-blue-500/20 bg-blue-500/5 px-4 py-3 text-white placeholder-neutral-500 transition focus:border-blue-500/40 focus:bg-blue-500/10 focus:outline-none"
-                  placeholder="john@example.com"
-                />
-              </motion.div>
-
-              {/* Message Input */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                <label className="block text-sm font-semibold mb-2">
-                  Your Message
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full rounded-lg border border-blue-500/20 bg-blue-500/5 px-4 py-3 text-white placeholder-neutral-500 transition focus:border-blue-500/40 focus:bg-blue-500/10 focus:outline-none resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </motion.div>
-
-              {/* Submit Button */}
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full rounded-lg bg-blue-500 px-6 py-3 font-semibold text-white transition hover:bg-blue-400"
-              >
-                {submitted ? "Message Sent! ✓" : "Send Message"}
-              </motion.button>
-            </form>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="space-y-8"
+            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
             {/* Email */}
-            <motion.div
-              whileHover={{ x: 10 }}
-              className="flex gap-4 cursor-pointer"
+            <motion.a
+              href="mailto:ayanaleem1992@gmail.com"
+              whileHover={{ y: -5 }}
+              className="flex flex-col items-center text-center p-6 rounded-2xl border border-blue-500/20 bg-blue-500/5 backdrop-blur-sm transition-all hover:border-blue-500/40"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-500/20">
-                <FaEnvelope className="text-blue-400" size={24} />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/20 mb-4 text-blue-400">
+                <FaEnvelope size={24} />
               </div>
-              <div>
-                <h3 className="font-semibold text-white">Email</h3>
-                <a
-                  href="mailto:ayan@example.com"
-                  className="text-neutral-400 hover:text-blue-400 transition"
-                >
-                  ayan@example.com
-                </a>
-              </div>
-            </motion.div>
+              <h3 className="font-semibold text-white mb-2">Email</h3>
+              <span className="text-sm text-neutral-400 hover:text-blue-400 transition break-all">
+                ayanaleem1992@gmail.com
+              </span>
+            </motion.a>
 
             {/* GitHub */}
             <motion.a
               href="https://github.com/Maybeayan07"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ x: 10 }}
-              className="flex gap-4 cursor-pointer"
+              whileHover={{ y: -5 }}
+              className="flex flex-col items-center text-center p-6 rounded-2xl border border-blue-500/20 bg-blue-500/5 backdrop-blur-sm transition-all hover:border-blue-500/40"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-500/20">
-                <FaGithub className="text-blue-400" size={24} />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/20 mb-4 text-blue-400">
+                <FaGithub size={24} />
               </div>
-              <div>
-                <h3 className="font-semibold text-white">GitHub</h3>
-                <p className="text-neutral-400 hover:text-blue-400 transition">
-                  github.com/Maybeayan07
-                </p>
-              </div>
+              <h3 className="font-semibold text-white mb-2">GitHub</h3>
+              <span className="text-sm text-neutral-400 hover:text-blue-400 transition">
+                github.com/Maybeayan07
+              </span>
             </motion.a>
 
             {/* LinkedIn */}
@@ -195,34 +78,32 @@ const Contact = () => {
               href="https://www.linkedin.com/in/ayan-aleem-4380932a9"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ x: 10 }}
-              className="flex gap-4 cursor-pointer"
+              whileHover={{ y: -5 }}
+              className="flex flex-col items-center text-center p-6 rounded-2xl border border-blue-500/20 bg-blue-500/5 backdrop-blur-sm transition-all hover:border-blue-500/40 md:col-span-2 lg:col-span-1"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-500/20">
-                <FaLinkedin className="text-blue-400" size={24} />
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/20 mb-4 text-blue-400">
+                <FaLinkedin size={24} />
               </div>
-              <div>
-                <h3 className="font-semibold text-white">LinkedIn</h3>
-                <p className="text-neutral-400 hover:text-blue-400 transition">
-                  linkedin.com/in/ayan-aleem
-                </p>
-              </div>
+              <h3 className="font-semibold text-white mb-2">LinkedIn</h3>
+              <span className="text-sm text-neutral-400 hover:text-blue-400 transition">
+                linkedin.com/in/ayan-aleem
+              </span>
             </motion.a>
+          </motion.div>
 
-            {/* Availability */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              viewport={{ once: true }}
-              className="rounded-lg border border-blue-500/20 bg-blue-500/5 p-6 backdrop-blur-sm"
-            >
-              <h3 className="font-semibold text-white mb-2">Availability</h3>
-              <p className="text-sm text-neutral-400">
-                I'm currently open to internship opportunities and freelance
-                projects. Feel free to reach out anytime!
-              </p>
-            </motion.div>
+          {/* Availability */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mt-8 rounded-2xl border border-blue-500/20 bg-blue-500/5 p-6 backdrop-blur-sm text-center max-w-2xl mx-auto"
+          >
+            <h3 className="font-semibold text-white mb-2">Availability</h3>
+            <p className="text-sm sm:text-base text-neutral-400">
+              I'm currently open to internship opportunities and freelance
+              projects. Feel free to reach out anytime!
+            </p>
           </motion.div>
         </div>
       </div>
