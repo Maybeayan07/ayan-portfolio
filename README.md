@@ -67,13 +67,13 @@ src/
 Clone the repository:
 
 ```bash
-git clone https://github.com/Maybeayan07/your-repository-name.git
+git clone https://github.com/Maybeayan07/ayan-portfolio.git
 ```
 
 Move into the project directory:
 
 ```bash
-cd your-repository-name
+cd ayan-portfolio
 ```
 
 Install dependencies:
