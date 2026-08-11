@@ -33,21 +33,48 @@ const HireModal = ({ isOpen, onClose }: HireModalProps) => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    
-    // Simulate form submission
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Failed to send message.");
+    }
+
+    setSubmitted(true);
+
     setTimeout(() => {
-      console.log("Form submitted:", formData);
-      setSubmitted(true);
-      setLoading(false);
-      setTimeout(() => {
-        setFormData({ name: "", email: "", message: "" });
-        setSubmitted(false);
-        onClose();
-      }, 2000);
-    }, 1000);
-  };
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+
+      setSubmitted(false);
+      onClose();
+    }, 2000);
+  } catch (error) {
+    console.error("Contact form error:", error);
+
+    alert(
+      error instanceof Error
+        ? error.message
+        : "Something went wrong. Please try again."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
 
   const contactOptions = [
     {
