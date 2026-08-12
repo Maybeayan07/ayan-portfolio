@@ -1,90 +1,75 @@
 import { createClient } from "@supabase/supabase-js";
+import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-export default {
-  async fetch(request: Request) {
-    // Only allow POST
-    if (request.method !== "POST") {
-      return Response.json(
-        {
-          success: false,
-          message: "Method not allowed",
-        },
-        { status: 405 }
-      );
-    }
+export default async function handler(
+  req: VercelRequest,
+  res: VercelResponse
+) {
+  if (req.method !== "POST") {
+    return res.status(405).json({
+      success: false,
+      message: "Method not allowed",
+    });
+  }
 
-    try {
-      const body = await request.json();
+  try {
+    const { name, email, message } = req.body ?? {};
 
-      const name = String(body.name ?? "").trim();
-      const email = String(body.email ?? "").trim();
-      const message = String(body.message ?? "").trim();
+    const cleanName = String(name ?? "").trim();
+    const cleanEmail = String(email ?? "").trim();
+    const cleanMessage = String(message ?? "").trim();
 
-      // Validation
-      if (!name || !email || !message) {
-        return Response.json(
-          {
-            success: false,
-            message: "Name, email and message are required.",
-          },
-          { status: 400 }
-        );
-      }
-
-      const supabaseUrl = process.env.SUPABASE_URL;
-      const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
-
-      if (!supabaseUrl || !supabaseSecretKey) {
-        console.error("Missing Supabase environment variables.");
-
-        return Response.json(
-          {
-            success: false,
-            message: "Server configuration error.",
-          },
-          { status: 500 }
-        );
-      }
-
-      const supabase = createClient(
-        supabaseUrl,
-        supabaseSecretKey
-      );
-
-      const { error } = await supabase
-        .from("messages")
-        .insert({
-          name,
-          email,
-          message,
-        });
-
-      if (error) {
-        console.error("Supabase error:", error);
-
-        return Response.json(
-          {
-            success: false,
-            message: "Failed to save your message.",
-          },
-          { status: 500 }
-        );
-      }
-
-      return Response.json({
-        success: true,
-        message: "Message sent successfully.",
+    if (!cleanName || !cleanEmail || !cleanMessage) {
+      return res.status(400).json({
+        success: false,
+        message: "Name, email and message are required.",
       });
-    } catch (error) {
-      console.error("Contact API error:", error);
-
-      return Response.json(
-        {
-          success: false,
-          message: "Something went wrong.",
-        },
-        { status: 500 }
-      );
     }
-  },
-};
+
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
+
+    if (!supabaseUrl || !supabaseSecretKey) {
+      console.error("Missing Supabase environment variables.");
+
+      return res.status(500).json({
+        success: false,
+        message: "Server configuration error.",
+      });
+    }
+
+    const supabase = createClient(
+      supabaseUrl,
+      supabaseSecretKey
+    );
+
+    const { error } = await supabase
+      .from("messages")
+      .insert({
+        name: cleanName,
+        email: cleanEmail,
+        message: cleanMessage,
+      });
+
+    if (error) {
+      console.error("Supabase error:", error);
+
+      return res.status(500).json({
+        success: false,
+        message: "Failed to save your message.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Message sent successfully.",
+    });
+  } catch (error) {
+    console.error("Contact API error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Something went wrong.",
+    });
+  }
+}
