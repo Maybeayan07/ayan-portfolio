@@ -38,7 +38,7 @@ export default function App() {
         <Certifications />
         <Achievements />
         <TechStack />
-        <Contact />
+        <Contact onHireClick={() => setIsHireModalOpen(true)} />
       </main>
       <Footer />
       <ScrollToTop />

@@ -25,21 +25,21 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="relative min-h-screen bg-[#050505] py-20 sm:py-32 text-white overflow-hidden"
+      className="relative overflow-hidden bg-[#050505] py-16 text-white sm:py-24"
     >
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-violet-500/10 blur-[150px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-8">
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="mb-16 sm:mb-20"
+          className="mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black">
             Work <span className="text-blue-400">Experience</span>
@@ -119,23 +119,23 @@ const Experience = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-16 sm:mt-20 rounded-lg border border-blue-500/20 bg-blue-500/5 p-6 sm:p-8 backdrop-blur-sm text-center"
+          className="card-surface mx-auto mt-12 max-w-3xl rounded-2xl p-6 text-center sm:mt-16 sm:p-8"
         >
           <h3 className="text-lg sm:text-xl font-bold mb-3">
             Looking for more details?
           </h3>
-          <p className="text-sm sm:text-base text-neutral-400 mb-6">
+          <p className="mx-auto mb-6 max-w-xl text-sm leading-6 text-slate-400 sm:text-base sm:leading-7">
             Check out my resume or connect with me on LinkedIn to learn more
             about my professional journey.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col justify-center gap-3 sm:flex-row">
             <motion.a
               href="https://www.linkedin.com/in/ayan-aleem-4380932a9"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="rounded-full bg-blue-500 px-6 py-2 font-semibold text-white transition hover:bg-blue-400"
+              className="rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:shadow-cyan-400/20"
             >
               Connect on LinkedIn
             </motion.a>

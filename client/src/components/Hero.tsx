@@ -86,7 +86,7 @@ const ProfileImage = () => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, delay: 0.4 }}
-      className="relative flex items-center justify-center scale-90 sm:scale-100"
+      className="relative flex w-full items-center justify-center scale-90 sm:scale-100"
     >
       <div className="absolute h-[320px] w-[320px] sm:h-[430px] sm:w-[430px] rounded-full bg-blue-500/20 blur-[100px] sm:blur-[120px]" />
 
@@ -102,7 +102,6 @@ const ProfileImage = () => {
         className="absolute h-[320px] w-[320px] sm:h-[430px] sm:w-[430px] rounded-full border border-violet-500/10"
       />
 
-      {/* Orbiting dot on the ring */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 18, ease: "linear" }}
@@ -120,7 +119,7 @@ const ProfileImage = () => {
           <img
             src={profileImage}
             alt="Ayan Aleem"
-            className="h-[200px] w-[200px] sm:h-[280px] sm:w-[280px] md:h-[340px] md:w-[340px] lg:h-[420px] lg:w-[420px] rounded-full object-cover"
+            className="h-[180px] w-[180px] sm:h-[280px] sm:w-[280px] md:h-[340px] md:w-[340px] lg:h-[420px] lg:w-[420px] rounded-full object-cover"
           />
         </div>
       </motion.div>
@@ -128,7 +127,7 @@ const ProfileImage = () => {
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ repeat: Infinity, duration: 4 }}
-        className="absolute -top-2 -right-4 sm:top-6 sm:right-0 rounded-2xl border border-blue-500/20 bg-[#111111]/90 px-3 sm:px-5 py-2 sm:py-4 backdrop-blur-xl shadow-xl scale-90 sm:scale-100"
+        className="profile-orbit-label absolute -top-2 right-0 hidden rounded-2xl border border-blue-500/20 bg-[#111111]/90 px-3 py-2 backdrop-blur-xl shadow-xl sm:right-0 sm:top-6 sm:flex sm:px-5 sm:py-4 sm:scale-100"
       >
         <p className="text-[10px] sm:text-xs uppercase tracking-widest text-blue-400 font-medium">
           Focus
@@ -139,7 +138,7 @@ const ProfileImage = () => {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 5 }}
-        className="absolute -bottom-2 -left-4 sm:bottom-10 sm:left-0 rounded-2xl border border-white/10 bg-[#111111]/90 px-3 sm:px-5 py-2 sm:py-4 backdrop-blur-xl shadow-xl scale-90 sm:scale-100"
+        className="profile-orbit-label absolute -bottom-2 left-0 hidden rounded-2xl border border-white/10 bg-[#111111]/90 px-3 py-2 backdrop-blur-xl shadow-xl sm:bottom-10 sm:left-0 sm:flex sm:px-5 sm:py-4 sm:scale-100"
       >
         <p className="text-[10px] sm:text-xs uppercase tracking-widest text-neutral-400 font-medium">
           Tech Stack
@@ -158,7 +157,7 @@ const Hero = ({ onHireClick }: HeroProps) => {
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden bg-[#050505] text-white pt-20"
+      className="relative overflow-hidden bg-[#050505] pb-14 pt-28 text-white sm:min-h-screen sm:pt-32"
     >
       <div className="absolute inset-0">
         <div
@@ -176,14 +175,14 @@ const Hero = ({ onHireClick }: HeroProps) => {
         <div className="absolute -bottom-60 -right-60 h-[600px] w-[600px] rounded-full bg-violet-500/20 blur-[180px]" />
       </div>
 
-      <div className="relative z-20 mx-auto flex min-h-[85vh] max-w-7xl items-center px-4 sm:px-8">
-        <div className="grid w-full items-center gap-12 lg:gap-20 lg:grid-cols-2">
-          <div>
+      <div className="relative z-20 mx-auto flex min-h-[85vh] w-full max-w-6xl items-center px-5 py-16 sm:px-8 sm:py-20">
+        <div className="grid w-full items-center gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
+          <div className="hero-copy min-w-0">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mb-6 inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium text-blue-400 backdrop-blur-md"
+              className="mb-6 inline-flex max-w-full items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium text-blue-400 backdrop-blur-md"
             >
               🚀 Open to AI / ML Internship Opportunities
             </motion.div>
@@ -192,7 +191,7 @@ const Hero = ({ onHireClick }: HeroProps) => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight"
+              className="section-title max-w-3xl text-5xl font-black leading-[0.98] sm:text-6xl lg:text-7xl"
             >
               Hi, I'm{" "}
               <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-white bg-clip-text text-transparent">
@@ -211,7 +210,8 @@ const Hero = ({ onHireClick }: HeroProps) => {
               <span className="animate-pulse text-blue-400">|</span>
             </motion.h2>
 
-            <div className="block lg:hidden my-10 flex justify-center">
+            {/* Profile image — mobile only, shown before the CTA buttons */}
+            <div className="mt-8 flex justify-center lg:hidden">
               <ProfileImage />
             </div>
 
@@ -219,32 +219,32 @@ const Hero = ({ onHireClick }: HeroProps) => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="mt-6 sm:mt-8 max-w-2xl text-base sm:text-lg leading-8 sm:leading-9 text-neutral-400"
+              className="mt-6 max-w-xl break-words text-base leading-8 text-slate-300 sm:mt-8 sm:text-lg sm:leading-9"
             >
               AI/ML student and developer building practical, end-to-end AI
-systems — from{" "}
-<span className="font-semibold text-white">
-  Retrieval-Augmented Generation chatbots
-</span>{" "}
-to{" "}
-<span className="font-semibold text-white">
-  computer vision applications
-</span>
-.
-<br />
-<br />
-I build{" "}
-<span className="font-semibold text-white">
-  intelligent, scalable solutions
-</span>{" "}
-that turn AI concepts into practical products.
+              systems — from{" "}
+              <span className="font-semibold text-white">
+                Retrieval-Augmented Generation chatbots
+              </span>{" "}
+              to{" "}
+              <span className="font-semibold text-white">
+                computer vision applications
+              </span>
+              .
+              <br />
+              <br />
+              I build{" "}
+              <span className="font-semibold text-white">
+                intelligent, scalable solutions
+              </span>{" "}
+              that turn AI concepts into practical products.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.75 }}
-              className="mt-10 sm:mt-12 flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-5"
+              className="mt-9 flex flex-col gap-3 sm:mt-11 sm:flex-row sm:flex-wrap sm:gap-4"
             >
               <motion.button
                 onClick={onHireClick}
@@ -281,7 +281,7 @@ that turn AI concepts into practical products.
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9 }}
-              className="mt-8 sm:mt-10 flex gap-6 sm:gap-8"
+              className="mt-8 flex gap-4 sm:gap-6"
             >
               <motion.a
                 href="https://github.com/Maybeayan07"
@@ -308,7 +308,7 @@ that turn AI concepts into practical products.
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1 }}
-              className="mt-12 sm:mt-14 grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-4"
+              className="mt-12 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/10 pt-7 sm:mt-14 sm:grid-cols-4 sm:gap-6"
             >
               {stats.map(({ number, label }) => (
                 <div key={label}>
@@ -323,7 +323,7 @@ that turn AI concepts into practical products.
             </motion.div>
           </div>
 
-          <div className="hidden lg:flex justify-center mt-10 lg:mt-0">
+          <div className="hidden min-w-0 justify-center lg:flex">
             <ProfileImage />
           </div>
         </div>

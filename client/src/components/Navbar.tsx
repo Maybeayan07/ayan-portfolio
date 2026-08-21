@@ -26,13 +26,13 @@ const Navbar = ({ isScrolled, onHireClick }: NavbarProps) => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-black/80 backdrop-blur-md border-b border-blue-500/10"
-          : "bg-transparent"
-      }`}
+  isScrolled || isOpen
+    ? "bg-black/80 backdrop-blur-md border-b border-blue-500/10"
+    : "bg-transparent"
+}`}
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-8">
-        <div className="flex items-center justify-between py-4 sm:py-6">
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-8">
+        <div className="flex min-h-20 items-center justify-between gap-6 py-4 sm:py-5">
           {/* Logo */}
           <motion.a
             href="#home"
@@ -49,7 +49,7 @@ const Navbar = ({ isScrolled, onHireClick }: NavbarProps) => {
           </motion.a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden gap-8 text-sm text-neutral-300 lg:flex">
+          <nav className="hidden flex-1 items-center justify-center gap-6 text-sm text-neutral-300 xl:flex">
             {navItems.map((item) => (
               <motion.a
                 key={item.label}
@@ -67,7 +67,7 @@ const Navbar = ({ isScrolled, onHireClick }: NavbarProps) => {
             onClick={onHireClick}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="hidden lg:flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-2 text-sm font-semibold text-white transition hover:shadow-lg hover:shadow-blue-500/50 mr-3"
+            className="hidden shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:shadow-lg hover:shadow-blue-500/30 lg:flex"
           >
             <FiBriefcase size={16} />
             Hire Me
@@ -79,7 +79,7 @@ const Navbar = ({ isScrolled, onHireClick }: NavbarProps) => {
             download
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="hidden rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-400 transition hover:bg-blue-500 hover:text-white lg:block"
+            className="hidden shrink-0 rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-2.5 text-sm font-semibold text-blue-300 transition hover:border-cyan-300/60 hover:bg-blue-500/15 hover:text-white lg:block"
           >
             Resume
           </motion.a>
@@ -88,7 +88,7 @@ const Navbar = ({ isScrolled, onHireClick }: NavbarProps) => {
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-blue-400 hover:text-blue-300 transition"
+            className="ml-auto rounded-lg border border-white/10 bg-white/5 p-2 text-blue-300 transition hover:border-blue-400/50 hover:bg-blue-500/10 lg:hidden"
           >
             {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
           </motion.button>
@@ -100,7 +100,7 @@ const Navbar = ({ isScrolled, onHireClick }: NavbarProps) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="flex flex-col gap-4 pb-6 border-t border-blue-500/10 pt-6 lg:hidden"
+            className="flex flex-col gap-4 border-t border-white/10 pb-6 pt-5 lg:hidden"
           >
             {navItems.map((item) => (
               <motion.a

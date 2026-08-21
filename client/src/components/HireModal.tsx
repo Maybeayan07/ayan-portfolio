@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiX, FiMail, FiLinkedin, FiPhone, FiCalendar, FiDownload, FiCheck } from "react-icons/fi";
+import resume from "../assets/resume.pdf";
 
 interface HireModalProps {
   isOpen: boolean;
@@ -104,7 +105,7 @@ const HireModal = ({ isOpen, onClose }: HireModalProps) => {
     {
       icon: FiDownload,
       label: "Download Resume",
-      href: "/resume.pdf",
+      href: resume,
       color: "from-orange-500 to-red-500",
       download: true,
     },
