@@ -35,11 +35,12 @@ const Projects = () => {
       className="relative min-h-screen bg-[#050505] py-20 text-white sm:py-28 lg:py-32 overflow-hidden"
     >
       {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 -right-40 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[150px]" />
-      </div>
+      <div className="pointer-events-none absolute inset-0" aria-hidden="true" />
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-8">
+      <div
+        className="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-8"
+        style={{ width: "100%", maxWidth: "72rem", marginInline: "auto" }}
+      >
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -85,17 +86,17 @@ const Projects = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6"
+          className="grid w-full items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6"
         >
           {displayedProjects.map((project) => (
             <motion.div
               key={project.id}
               variants={itemVariants}
               whileHover={{ y: -10 }}
-              className="group card-surface relative flex h-full flex-col overflow-hidden rounded-2xl backdrop-blur-sm transition hover:-translate-y-1"
+              className="group card-surface relative flex h-full min-w-0 flex-col overflow-hidden rounded-2xl backdrop-blur-sm transition hover:-translate-y-1"
             >
               {/* Project Image or Video */}
-              <div className="relative aspect-[16/9] overflow-hidden bg-slate-950">
+              <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950">
                 {project.video ? (
                   <video
                     src={project.video}
@@ -116,8 +117,8 @@ const Projects = () => {
               </div>
 
               {/* Project Info */}
-              <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <h3 className="mb-2 text-lg font-bold text-white sm:text-xl">
+              <div className="p-5 sm:p-6">
+                <h3 className="mb-2 text-lg font-bold text-white sm:text-xl lg:min-h-[3.5rem]">
                   {project.title}
                 </h3>
 
@@ -125,49 +126,50 @@ const Projects = () => {
                   {project.description}
                 </p>
 
-                {/* Technologies */}
-                <div className="mb-5 flex flex-wrap gap-2">
-                  {project.technologies.slice(0, 3).map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs rounded-full bg-blue-500/20 px-2 py-1 text-blue-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.technologies.length > 3 && (
-                    <span className="text-xs rounded-full bg-blue-500/20 px-2 py-1 text-blue-300">
-                      +{project.technologies.length - 3}
-                    </span>
-                  )}
-                </div>
+                {/* Technologies and links */}
+                <div className="mt-5 flex items-center gap-3 border-t border-white/10 pt-4">
+                  <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
+                    {project.technologies.slice(0, 3).map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-full bg-blue-500/20 px-2 py-1 text-xs text-blue-300"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.technologies.length > 3 && (
+                      <span className="rounded-full bg-blue-500/20 px-2 py-1 text-xs text-blue-300">
+                        +{project.technologies.length - 3}
+                      </span>
+                    )}
+                  </div>
 
-                {/* Links */}
-                <div className="mt-auto flex gap-3 border-t border-white/10 pt-4">
-                  {project.github && (
-                    <motion.a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.2 }}
-                      className="text-neutral-400 hover:text-blue-400 transition"
-                      title="GitHub"
-                    >
-                      <FaGithub size={20} />
-                    </motion.a>
-                  )}
-                  {project.live && (
-                    <motion.a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.2 }}
-                      className="text-neutral-400 hover:text-blue-400 transition"
-                      title="Live Demo"
-                    >
-                      <FaExternalLinkAlt size={20} />
-                    </motion.a>
-                  )}
+                  <div className="flex shrink-0 items-center gap-3">
+                    {project.github && (
+                      <motion.a
+                        href="https://github.com/Maybeayan07"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.2 }}
+                        className="text-neutral-400 transition hover:text-blue-400"
+                        title="GitHub"
+                      >
+                        <FaGithub size={20} />
+                      </motion.a>
+                    )}
+                    {project.live && (
+                      <motion.a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.2 }}
+                        className="text-neutral-400 transition hover:text-blue-400"
+                        title="Live Demo"
+                      >
+                        <FaExternalLinkAlt size={20} />
+                      </motion.a>
+                    )}
+                  </div>
                 </div>
               </div>
 

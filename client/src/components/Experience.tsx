@@ -32,7 +32,10 @@ const Experience = () => {
         <div className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-violet-500/10 blur-[150px]" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-8">
+      <div
+        className="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-8"
+        style={{ width: "100%", maxWidth: "72rem", marginInline: "auto" }}
+      >
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -70,10 +73,10 @@ const Experience = () => {
               {/* Content */}
               <motion.div
                 whileHover={{ x: 10 }}
-                className="rounded-lg border border-blue-500/20 bg-blue-500/5 p-6 sm:p-8 backdrop-blur-sm md:ml-12 transition hover:border-blue-500/40 hover:bg-blue-500/10"
+                className="card-surface min-w-0 rounded-2xl p-6 transition hover:-translate-y-1 sm:p-8 md:ml-12"
               >
                 {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-4">
+                <div className="mb-4 flex min-w-0 flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
                   <div>
                     <h3 className="text-lg sm:text-xl font-bold text-white">
                       {exp.role}
@@ -82,7 +85,7 @@ const Experience = () => {
                       {exp.company}
                     </p>
                   </div>
-                  <span className="text-xs sm:text-sm text-neutral-400 whitespace-nowrap">
+                  <span className="shrink-0 text-xs text-neutral-400 sm:text-sm">
                     {exp.duration}
                   </span>
                 </div>
@@ -119,7 +122,8 @@ const Experience = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="card-surface mx-auto mt-12 max-w-3xl rounded-2xl p-6 text-center sm:mt-16 sm:p-8"
+          className="card-surface mx-auto mt-12 w-full max-w-3xl rounded-2xl p-6 text-center sm:mt-16 sm:p-8"
+          style={{ width: "100%", maxWidth: "48rem", marginInline: "auto" }}
         >
           <h3 className="text-lg sm:text-xl font-bold mb-3">
             Looking for more details?

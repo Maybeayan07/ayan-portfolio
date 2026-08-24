@@ -26,10 +26,10 @@ const Navbar = ({ isScrolled, onHireClick }: NavbarProps) => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-  isScrolled || isOpen
-    ? "bg-black/80 backdrop-blur-md border-b border-blue-500/10"
-    : "bg-transparent"
-}`}
+        isScrolled
+          ? "bg-black/80 backdrop-blur-md border-b border-blue-500/10"
+          : "bg-transparent"
+      }`}
     >
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-8">
         <div className="flex min-h-20 items-center justify-between gap-6 py-4 sm:py-5">
@@ -62,27 +62,29 @@ const Navbar = ({ isScrolled, onHireClick }: NavbarProps) => {
             ))}
           </nav>
 
-          {/* Hire Me Button - Desktop */}
-          <motion.button
-            onClick={onHireClick}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="hidden shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:shadow-lg hover:shadow-blue-500/30 lg:flex"
-          >
-            <FiBriefcase size={16} />
-            Hire Me
-          </motion.button>
+          <div className="hidden shrink-0 items-center gap-3 lg:flex lg:translate-x-4">
+            {/* Hire Me Button - Desktop */}
+            <motion.button
+              onClick={onHireClick}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:shadow-lg hover:shadow-blue-500/30"
+            >
+              <FiBriefcase size={16} />
+              Hire Me
+            </motion.button>
 
-          {/* Resume Button - Desktop */}
-          <motion.a
-            href={resume}
-            download
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="hidden shrink-0 rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-2.5 text-sm font-semibold text-blue-300 transition hover:border-cyan-300/60 hover:bg-blue-500/15 hover:text-white lg:block"
-          >
-            Resume
-          </motion.a>
+            {/* Resume Button - Desktop */}
+            <motion.a
+              href={resume}
+              download
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="shrink-0 rounded-full border border-blue-500/40 bg-blue-500/10 px-4 py-2.5 text-sm font-semibold text-blue-300 transition hover:border-cyan-300/60 hover:bg-blue-500/15 hover:text-white"
+            >
+              Resume
+            </motion.a>
+          </div>
 
           {/* Mobile Menu Button */}
           <motion.button

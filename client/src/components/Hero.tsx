@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaArrowRight } from "react-icons/fa";
 import { FiDownload, FiChevronDown } from "react-icons/fi";
-import profileImage from "../assets/image/profile.jpeg";
+import profileImage from "../assets/image/profile-ayan-jeep.png";
 import resume from "../assets/resume.pdf";
 import { stats } from "../data";
 
@@ -102,6 +102,7 @@ const ProfileImage = () => {
         className="absolute h-[320px] w-[320px] sm:h-[430px] sm:w-[430px] rounded-full border border-violet-500/10"
       />
 
+      {/* Orbiting dot on the ring */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 18, ease: "linear" }}
@@ -119,7 +120,7 @@ const ProfileImage = () => {
           <img
             src={profileImage}
             alt="Ayan Aleem"
-            className="h-[180px] w-[180px] sm:h-[280px] sm:w-[280px] md:h-[340px] md:w-[340px] lg:h-[420px] lg:w-[420px] rounded-full object-cover"
+            className="h-[200px] w-[200px] sm:h-[280px] sm:w-[280px] md:h-[340px] md:w-[340px] lg:h-[420px] lg:w-[420px] rounded-full object-cover"
           />
         </div>
       </motion.div>
@@ -157,7 +158,7 @@ const Hero = ({ onHireClick }: HeroProps) => {
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-[#050505] pb-14 pt-28 text-white sm:min-h-screen sm:pt-32"
+      className="relative overflow-hidden bg-[#050505] pb-14 pt-24 text-white sm:min-h-screen sm:pt-28"
     >
       <div className="absolute inset-0">
         <div
@@ -175,14 +176,17 @@ const Hero = ({ onHireClick }: HeroProps) => {
         <div className="absolute -bottom-60 -right-60 h-[600px] w-[600px] rounded-full bg-violet-500/20 blur-[180px]" />
       </div>
 
-      <div className="relative z-20 mx-auto flex min-h-[85vh] w-full max-w-6xl items-center px-5 py-16 sm:px-8 sm:py-20">
-        <div className="grid w-full items-center gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
+      <div
+        className="relative z-20 mx-auto flex min-h-[85vh] w-full max-w-6xl items-center px-4 py-16 sm:px-8 sm:py-20"
+        style={{ width: "100%", maxWidth: "72rem", marginInline: "auto" }}
+      >
+        <div className="grid w-full items-center gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 lg:justify-items-stretch">
           <div className="hero-copy min-w-0">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mb-6 inline-flex max-w-full items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium text-blue-400 backdrop-blur-md"
+              className="mb-6 inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium text-blue-400 backdrop-blur-md"
             >
               🚀 Open to AI / ML Internship Opportunities
             </motion.div>
@@ -210,8 +214,7 @@ const Hero = ({ onHireClick }: HeroProps) => {
               <span className="animate-pulse text-blue-400">|</span>
             </motion.h2>
 
-            {/* Profile image — mobile only, shown before the CTA buttons */}
-            <div className="mt-8 flex justify-center lg:hidden">
+            <div className="hidden">
               <ProfileImage />
             </div>
 
@@ -222,22 +225,22 @@ const Hero = ({ onHireClick }: HeroProps) => {
               className="mt-6 max-w-xl break-words text-base leading-8 text-slate-300 sm:mt-8 sm:text-lg sm:leading-9"
             >
               AI/ML student and developer building practical, end-to-end AI
-              systems — from{" "}
-              <span className="font-semibold text-white">
-                Retrieval-Augmented Generation chatbots
-              </span>{" "}
-              to{" "}
-              <span className="font-semibold text-white">
-                computer vision applications
-              </span>
-              .
-              <br />
-              <br />
-              I build{" "}
-              <span className="font-semibold text-white">
-                intelligent, scalable solutions
-              </span>{" "}
-              that turn AI concepts into practical products.
+systems — from{" "}
+<span className="font-semibold text-white">
+  Retrieval-Augmented Generation chatbots
+</span>{" "}
+to{" "}
+<span className="font-semibold text-white">
+  computer vision applications
+</span>
+.
+<br />
+<br />
+I build{" "}
+<span className="font-semibold text-white">
+  intelligent, scalable solutions
+</span>{" "}
+that turn AI concepts into practical products.
             </motion.p>
 
             <motion.div
@@ -324,6 +327,10 @@ const Hero = ({ onHireClick }: HeroProps) => {
           </div>
 
           <div className="hidden min-w-0 justify-center lg:flex">
+            <ProfileImage />
+          </div>
+
+          <div className="mt-10 flex justify-center lg:hidden">
             <ProfileImage />
           </div>
         </div>

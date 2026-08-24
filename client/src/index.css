@@ -225,14 +225,14 @@ form input, form textarea, form button { width: 100%; }
 form button { width: auto; }
 
 /* Align the project cards to a common baseline even when descriptions differ. */
-#projects .group > div:last-of-type { display: flex; min-height: 15rem; flex-direction: column; }
-#projects .group > div:last-of-type > div:last-child { margin-top: auto; }
+#projects .group > div:nth-child(2) { display: block; }
+#projects .group > div:nth-child(2) > div:last-child { margin-top: 1rem; }
 
 /* Keep the skills and timeline content visually centered inside the shared shell. */
 #skills .grid, #experience .grid { align-items: stretch; }
 
 @media (max-width: 767px) {
-  #projects .group > div:last-of-type { min-height: auto; }
+  #projects .group > div:nth-child(2) { display: block; }
 }
 
 @media (max-width: 639px) {

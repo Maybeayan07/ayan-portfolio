@@ -34,48 +34,48 @@ const HireModal = ({ isOpen, onClose }: HireModalProps) => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setLoading(true);
+    e.preventDefault();
+    setLoading(true);
 
-  try {
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.message || "Failed to send message.");
-    }
-
-    setSubmitted(true);
-
-    setTimeout(() => {
-      setFormData({
-        name: "",
-        email: "",
-        message: "",
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
 
-      setSubmitted(false);
-      onClose();
-    }, 2000);
-  } catch (error) {
-    console.error("Contact form error:", error);
+      const data = await response.json();
 
-    alert(
-      error instanceof Error
-        ? error.message
-        : "Something went wrong. Please try again."
-    );
-  } finally {
-    setLoading(false);
-  }
-};
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to send message.");
+      }
+
+      setSubmitted(true);
+
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+
+        setSubmitted(false);
+        onClose();
+      }, 2000);
+    } catch (error) {
+      console.error("Contact form error:", error);
+
+      alert(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const contactOptions = [
     {
@@ -121,7 +121,7 @@ const HireModal = ({ isOpen, onClose }: HireModalProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm"
           />
 
           {/* Modal */}
@@ -130,12 +130,12 @@ const HireModal = ({ isOpen, onClose }: HireModalProps) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-0 z-50 flex items-center justify-center px-4 sm:px-0"
+            className="fixed inset-0 z-[70] flex items-center justify-center px-4 py-6 sm:px-0"
           >
             {/* Modal Content */}
             <motion.div
               layoutId="hire-modal"
-              className="relative w-full max-w-2xl rounded-2xl border border-blue-500/30 bg-gradient-to-br from-slate-900/90 via-slate-900/80 to-slate-900/90 p-6 sm:p-8 shadow-2xl backdrop-blur-xl"
+              className="relative max-h-[85vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-blue-500/30 bg-gradient-to-br from-slate-900/90 via-slate-900/80 to-slate-900/90 p-6 sm:p-8 shadow-2xl backdrop-blur-xl"
             >
               {/* Close Button */}
               <motion.button
@@ -156,7 +156,7 @@ const HireModal = ({ isOpen, onClose }: HireModalProps) => {
               >
                 <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
                 <span className="text-xs sm:text-sm font-semibold text-green-300">
-                  Available for Opportunities
+                  Available for work
                 </span>
               </motion.div>
 
