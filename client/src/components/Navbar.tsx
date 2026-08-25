@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FiMenu, FiX, FiBriefcase } from "react-icons/fi";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import resume from "../assets/resume.pdf";
 
 interface NavbarProps {
@@ -10,6 +10,24 @@ interface NavbarProps {
 
 const Navbar = ({ isScrolled, onHireClick }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+
+    const setVar = () => {
+      document.documentElement.style.setProperty(
+        "--navbar-height",
+        `${el.offsetHeight}px`
+      );
+    };
+
+    setVar();
+    const observer = new ResizeObserver(setVar);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const navItems = [
     { label: "Home", href: "#home" },
@@ -22,6 +40,7 @@ const Navbar = ({ isScrolled, onHireClick }: NavbarProps) => {
 
   return (
     <motion.header
+      ref={headerRef}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -49,7 +68,7 @@ const Navbar = ({ isScrolled, onHireClick }: NavbarProps) => {
           </motion.a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden flex-1 items-center justify-center gap-6 text-sm text-neutral-300 xl:flex">
+          <nav className="hidden flex-1 items-center justify-center gap-6 text-sm text-neutral-300 lg:flex">
             {navItems.map((item) => (
               <motion.a
                 key={item.label}

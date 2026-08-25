@@ -307,5 +307,9 @@ a:hover { text-underline-offset: 3px; }
 @media (hover: none) {
   .group:hover { transform: none !important; }
 }
-
+@media (min-width: 1024px) {
+  #home {
+    padding-top: calc(var(--navbar-height, 96px) + 0rem);
+  }
+}
 /* End global system. */

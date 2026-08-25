@@ -157,8 +157,8 @@ const Hero = ({ onHireClick }: HeroProps) => {
 
   return (
     <section
-      id="home"
-      className="relative overflow-x-hidden overflow-y-visible bg-[#050505] pb-14 pt-32 text-white sm:pt-28 sm:min-h-screen"
+      className="relative overflow-x-hidden overflow-y-visible bg-[#050505] pb-14 pt-28 text-white scroll-mt-24 sm:scroll-mt-28 sm:pt-40 lg:pt-48 xl:pt-52 sm:min-h-screen"
+      
     >
       <div className="absolute inset-0 overflow-hidden">
         <div
@@ -186,7 +186,7 @@ const Hero = ({ onHireClick }: HeroProps) => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mb-6 inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium text-blue-400 backdrop-blur-md"
+              className="mt-10 mb-6 inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium text-blue-400 backdrop-blur-md sm:mt-0 lg:mt-4"
             >
               🚀 Open to AI / ML Internship Opportunities
             </motion.div>
