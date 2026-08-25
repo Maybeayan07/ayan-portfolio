@@ -12,6 +12,7 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import HireModal from "./components/HireModal";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,6 +44,7 @@ export default function App() {
       <Footer />
       <ScrollToTop />
       <HireModal isOpen={isHireModalOpen} onClose={() => setIsHireModalOpen(false)} />
+      <Analytics />
     </div>
   );
 }
