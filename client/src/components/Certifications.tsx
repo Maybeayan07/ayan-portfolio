@@ -57,18 +57,18 @@ const Certifications = () => {
             <motion.div
               key={cert.id}
               variants={itemVariants}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group relative overflow-hidden rounded-lg border border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-cyan-500/5 p-6 backdrop-blur-sm transition hover:border-blue-500/40 hover:bg-blue-500/15"
+              whileHover={{ scale: 1.08, rotate: 2 }}
+              className="group relative overflow-hidden rounded-lg border border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-cyan-500/5 p-6 backdrop-blur-sm transition hover:border-blue-500/40 hover:shadow-lg hover:shadow-blue-500/20"
             >
               {/* Icon */}
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-500/20 group-hover:bg-blue-500/30 transition">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-500/20 group-hover:scale-110 transition duration-300">
                 <FaAward className="text-blue-400 text-lg" />
               </div>
 
               {/* Content */}
               <h3 className="text-lg font-bold text-white mb-2">{cert.title}</h3>
               <p className="text-sm text-blue-300 mb-3">{cert.issuer}</p>
-              <p className="text-xs text-neutral-400 mb-4">{cert.date}</p>
+              <p className="pl-0.5 text-xs text-neutral-400 mb-4">{cert.date}</p>
 
               {/* Credential Link */}
               {cert.credentialUrl && (
@@ -84,14 +84,10 @@ const Certifications = () => {
                 </motion.a>
               )}
 
-              {/* Gradient Border Animation */}
-              <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none"
+              {/* Gradient Glow Animation */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none"
                 style={{
-                  background: "linear-gradient(135deg, #3b82f6, #06b6d4)",
-                  WebkitMaskImage: "linear-gradient(#fff, #fff)",
-                  WebkitMaskComposite: "destination-out",
-                  maskComposite: "exclude",
-                  padding: "1px",
+                  background: "radial-gradient(circle at center, rgba(59, 130, 246, 0.1), transparent)",
                 }}
               />
             </motion.div>

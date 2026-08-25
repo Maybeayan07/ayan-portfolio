@@ -57,22 +57,9 @@ const ParticleField = () => {
           <motion.div
             key={i}
             className="absolute rounded-full bg-blue-400/40"
-            style={{
-              width: size,
-              height: size,
-              left: `${left}%`,
-              top: `${top}%`,
-            }}
-            animate={{
-              y: [0, -40, 0],
-              opacity: [0.2, 0.8, 0.2],
-            }}
-            transition={{
-              duration,
-              delay,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            style={{ width: size, height: size, left: `${left}%`, top: `${top}%` }}
+            animate={{ y: [0, -40, 0], opacity: [0.2, 0.8, 0.2] }}
+            transition={{ duration, delay, repeat: Infinity, ease: "easeInOut" }}
           />
         );
       })}
@@ -82,31 +69,33 @@ const ParticleField = () => {
 
 const ProfileImage = () => {
   return (
+    // overflow-hidden on the wrapper keeps the glow + rings from ever
+    // reading as a hard-edged box on narrow screens
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, delay: 0.4 }}
-      className="relative flex w-full items-center justify-center scale-90 sm:scale-100"
+      className="relative flex w-full items-center justify-center overflow-hidden py-6 sm:overflow-visible sm:py-0"
     >
-      <div className="absolute h-[320px] w-[320px] sm:h-[430px] sm:w-[430px] rounded-full bg-blue-500/20 blur-[100px] sm:blur-[120px]" />
+      <div className="absolute h-[240px] w-[240px] rounded-full bg-blue-500/20 blur-[80px] sm:h-[430px] sm:w-[430px] sm:blur-[120px]" />
 
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 18, ease: "linear" }}
-        className="absolute h-[290px] w-[290px] sm:h-[390px] sm:w-[390px] rounded-full border border-blue-400/20 border-dashed"
+        className="absolute h-[230px] w-[230px] rounded-full border border-dashed border-blue-400/20 sm:h-[390px] sm:w-[390px]"
       />
 
       <motion.div
         animate={{ rotate: -360 }}
         transition={{ repeat: Infinity, duration: 28, ease: "linear" }}
-        className="absolute h-[320px] w-[320px] sm:h-[430px] sm:w-[430px] rounded-full border border-violet-500/10"
+        className="absolute h-[250px] w-[250px] rounded-full border border-violet-500/10 sm:h-[430px] sm:w-[430px]"
       />
 
       {/* Orbiting dot on the ring */}
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 18, ease: "linear" }}
-        className="absolute h-[290px] w-[290px] sm:h-[390px] sm:w-[390px]"
+        className="absolute h-[230px] w-[230px] sm:h-[390px] sm:w-[390px]"
       >
         <div className="absolute -top-1 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-cyan-400 shadow-[0_0_10px_3px_rgba(34,211,238,0.6)]" />
       </motion.div>
@@ -116,11 +105,11 @@ const ProfileImage = () => {
         transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
         className="relative"
       >
-        <div className="overflow-hidden rounded-full border border-white/10 bg-[#111111] p-2 sm:p-3 shadow-2xl">
+        <div className="overflow-hidden rounded-full border border-white/10 bg-[#111111] p-2 shadow-2xl sm:p-3">
           <img
             src={profileImage}
             alt="Ayan Aleem"
-            className="h-[200px] w-[200px] sm:h-[280px] sm:w-[280px] md:h-[340px] md:w-[340px] lg:h-[420px] lg:w-[420px] rounded-full object-cover object-top"
+            className="h-[180px] w-[180px] rounded-full object-cover object-top sm:h-[280px] sm:w-[280px] md:h-[340px] md:w-[340px] lg:h-[420px] lg:w-[420px]"
           />
         </div>
       </motion.div>
@@ -133,7 +122,9 @@ const ProfileImage = () => {
         <p className="text-[10px] sm:text-xs uppercase tracking-widest text-blue-400 font-medium">
           Focus
         </p>
-        <h4 className="mt-1 sm:mt-2 text-xs sm:text-sm font-semibold">RAG & Computer Vision</h4>
+        <h4 className="mt-1 sm:mt-2 text-xs sm:text-sm font-semibold">
+          RAG & Computer Vision
+        </h4>
       </motion.div>
 
       <motion.div
@@ -156,10 +147,10 @@ const Hero = ({ onHireClick }: HeroProps) => {
   const typedRole = useTypewriter(roles);
 
   return (
-    <section
-      className="relative overflow-x-hidden overflow-y-visible bg-[#050505] pb-14 pt-28 text-white scroll-mt-24 sm:scroll-mt-28 sm:pt-40 lg:pt-48 xl:pt-52 sm:min-h-screen"
-      
-    >
+<section
+  className="relative overflow-x-hidden overflow-y-visible bg-[#050505] pb-14 text-white scroll-mt-24 sm:scroll-mt-28 sm:min-h-screen"
+  style={{ paddingTop: "calc(var(--navbar-height, 6rem) + 0rem)" }}
+>
       <div className="absolute inset-0 overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.08]"
@@ -176,17 +167,16 @@ const Hero = ({ onHireClick }: HeroProps) => {
         <div className="absolute -bottom-60 -right-60 h-[600px] w-[600px] rounded-full bg-violet-500/20 blur-[180px]" />
       </div>
 
-      <div
-        className="relative z-20 mx-auto flex min-h-[85vh] w-full max-w-6xl items-center px-6 py-16 sm:px-8 sm:py-20"
-        style={{ width: "100%", maxWidth: "72rem", marginInline: "auto" }}
-      >
-        <div className="grid w-full items-center gap-14 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 lg:justify-items-stretch">
+<div className="relative z-20 mx-auto flex min-h-[85vh] w-full max-w-6xl items-center px-5 py-12 sm:px-8 sm:py-20"
+  style={{ width: "100%", maxWidth: "72rem", marginInline: "auto" }}
+>
+        <div className="grid w-full items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 lg:justify-items-stretch">
           <div className="hero-copy min-w-0 text-center lg:text-left">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mt-10 mb-6 inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium text-blue-400 backdrop-blur-md sm:mt-0 lg:mt-4"
+              className="mb-5 inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-2 text-xs font-medium text-blue-400 backdrop-blur-md sm:px-5 sm:text-sm"
             >
               🚀 Open to AI / ML Internship Opportunities
             </motion.div>
@@ -195,7 +185,7 @@ const Hero = ({ onHireClick }: HeroProps) => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="section-title mx-auto max-w-3xl text-5xl font-black leading-[0.98] sm:text-6xl lg:mx-0 lg:text-7xl"
+              className="section-title mx-auto max-w-3xl text-4xl font-black leading-[1.05] sm:text-6xl sm:leading-[0.98] lg:mx-0 lg:text-7xl"
             >
               Hi, I'm{" "}
               <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-white bg-clip-text text-transparent">
@@ -203,48 +193,42 @@ const Hero = ({ onHireClick }: HeroProps) => {
               </span>
             </motion.h1>
 
-            {/* Typewriter role — auto height on mobile so wrapping text doesn't clip */}
             <motion.h2
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45 }}
-              className="mt-4 sm:mt-6 min-h-[2.25rem] text-lg sm:text-2xl md:text-3xl font-semibold text-neutral-200 sm:h-10"
+              className="mt-4 min-h-[2rem] text-base font-semibold text-neutral-200 sm:mt-6 sm:h-10 sm:text-2xl md:text-3xl"
             >
               <span className="text-blue-400">{typedRole}</span>
               <span className="animate-pulse text-blue-400">|</span>
             </motion.h2>
 
-            <div className="hidden">
-              <ProfileImage />
-            </div>
-
             <motion.p
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="mx-auto mt-6 max-w-xl break-words text-base leading-8 text-slate-300 sm:mt-8 sm:text-lg sm:leading-9 lg:mx-0"
+              className="mx-auto mt-5 max-w-xl break-words text-sm leading-7 text-slate-300 sm:mt-8 sm:text-lg sm:leading-9 lg:mx-0"
             >
-              AI/ML student and developer building practical, end-to-end AI
-systems — from{" "}
-<span className="font-semibold text-white">
-  Retrieval-Augmented Generation chatbots
-</span>{" "}
-to{" "}
-<span className="font-semibold text-white">
-  computer vision applications
-</span>
-.
-<br />
-<br />
-I build{" "}
-<span className="font-semibold text-white">
-  intelligent, scalable solutions
-</span>{" "}
-that turn AI concepts into practical products.
+              AI/ML student and developer building practical, end-to-end AI systems — from{" "}
+              <span className="font-semibold text-white">
+                Retrieval-Augmented Generation chatbots
+              </span>{" "}
+              to{" "}
+              <span className="font-semibold text-white">
+                computer vision applications
+              </span>
+              .{" "}
+              <br className="hidden sm:block" />
+              <br className="hidden sm:block" />
+              I build{" "}
+              <span className="font-semibold text-white">
+                intelligent, scalable solutions
+              </span>{" "}
+              that turn AI concepts into practical products.
             </motion.p>
 
-            {/* Mobile-only profile image, shown above the Hire Me row. */}
-            <div className="mt-6 flex justify-center lg:hidden">
+            {/* Mobile-only profile image */}
+            <div className="mt-2 flex justify-center lg:hidden">
               <ProfileImage />
             </div>
 
@@ -252,13 +236,13 @@ that turn AI concepts into practical products.
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.75 }}
-              className="mt-9 flex flex-col items-center gap-3 sm:mt-11 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4 lg:justify-start"
+              className="mt-8 flex flex-col items-center gap-3 sm:mt-11 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4 lg:justify-start"
             >
               <motion.button
                 onClick={onHireClick}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-6 sm:px-8 py-3 sm:py-4 font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50"
+                className="group flex items-center justify-center gap-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-3 font-semibold text-white transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50 sm:px-8 sm:py-4"
               >
                 💼 Hire Me
               </motion.button>
@@ -267,7 +251,7 @@ that turn AI concepts into practical products.
                 href="#projects"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group flex items-center justify-center gap-3 rounded-full border border-blue-500/40 bg-blue-500/10 px-6 sm:px-8 py-3 sm:py-4 font-semibold text-blue-300 transition-all duration-300 hover:bg-blue-500/20 hover:text-blue-200"
+                className="group flex items-center justify-center gap-3 rounded-full border border-blue-500/40 bg-blue-500/10 px-6 py-3 font-semibold text-blue-300 transition-all duration-300 hover:bg-blue-500/20 hover:text-blue-200 sm:px-8 sm:py-4"
               >
                 View Projects
                 <FaArrowRight className="transition group-hover:translate-x-1" />
@@ -278,7 +262,7 @@ that turn AI concepts into practical products.
                 download
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center justify-center gap-3 rounded-full border border-white/10 bg-white/5 px-6 sm:px-8 py-3 sm:py-4 font-semibold backdrop-blur-md transition hover:border-blue-400 hover:bg-blue-500/10"
+                className="flex items-center justify-center gap-3 rounded-full border border-white/10 bg-white/5 px-6 py-3 font-semibold backdrop-blur-md transition hover:border-blue-400 hover:bg-blue-500/10 sm:px-8 sm:py-4"
               >
                 <FiDownload />
                 Download Resume
@@ -289,14 +273,14 @@ that turn AI concepts into practical products.
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9 }}
-              className="mt-8 flex justify-center gap-4 sm:gap-6 lg:justify-start"
+              className="mt-7 flex justify-center gap-4 sm:gap-6 lg:justify-start"
             >
               <motion.a
                 href="https://github.com/Maybeayan07"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2 }}
-                className="text-2xl sm:text-3xl text-neutral-500 transition hover:text-blue-400"
+                className="text-2xl text-neutral-500 transition hover:text-blue-400 sm:text-3xl"
               >
                 <FaGithub />
               </motion.a>
@@ -306,7 +290,7 @@ that turn AI concepts into practical products.
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2 }}
-                className="text-2xl sm:text-3xl text-neutral-500 transition hover:text-blue-400"
+                className="text-2xl text-neutral-500 transition hover:text-blue-400 sm:text-3xl"
               >
                 <FaLinkedin />
               </motion.a>
@@ -316,14 +300,14 @@ that turn AI concepts into practical products.
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1 }}
-              className="mt-12 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/10 pt-7 text-center sm:mt-14 sm:grid-cols-4 sm:gap-6 lg:text-left"
+              className="mt-10 grid grid-cols-2 gap-x-4 gap-y-5 border-t border-white/10 pt-6 text-center sm:mt-14 sm:grid-cols-4 sm:gap-6 sm:pt-7 lg:text-left"
             >
               {stats.map(({ number, label }) => (
                 <div key={label}>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-blue-400">
+                  <h3 className="text-xl font-bold text-blue-400 sm:text-3xl">
                     {number}
                   </h3>
-                  <p className="mt-2 text-xs sm:text-sm text-neutral-400">
+                  <p className="mt-2 text-xs text-neutral-400 sm:text-sm">
                     {label}
                   </p>
                 </div>
@@ -340,7 +324,7 @@ that turn AI concepts into practical products.
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden sm:block"
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 sm:block"
       >
         <FiChevronDown size={30} className="text-blue-400" />
       </motion.div>

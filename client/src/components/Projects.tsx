@@ -128,7 +128,7 @@ const Projects = () => {
 
                 {/* Technologies and links */}
                 <div className="mt-5 flex items-center gap-3 border-t border-white/10 pt-4">
-                  <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
+                  <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2 pl-0.5">
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span
                         key={tech}

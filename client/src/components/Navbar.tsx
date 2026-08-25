@@ -45,7 +45,7 @@ const Navbar = ({ isScrolled, onHireClick }: NavbarProps) => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        isScrolled || isOpen
           ? "bg-black/80 backdrop-blur-md border-b border-blue-500/10"
           : "bg-transparent"
       }`}
@@ -121,7 +121,7 @@ const Navbar = ({ isScrolled, onHireClick }: NavbarProps) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="flex flex-col gap-4 border-t border-white/10 pb-6 pt-5 lg:hidden"
+            className="relative z-50 flex flex-col gap-4 border-t border-white/10 bg-[#050505] px-3 pb-6 pt-5 lg:hidden"
           >
             {navItems.map((item) => (
               <motion.a
